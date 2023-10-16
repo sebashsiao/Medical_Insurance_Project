@@ -43,8 +43,8 @@ result = []
 for i in range(len(insurance_data)):
     x = insurance_data[i][1]
     y = estimated_insurance_data[i][1]
-    dif = y - x
-    if dif < 0:
+    dif = x - y
+    if dif > 0:
         result.append((dif, 'overpaid'))
     result.append((dif, 'underpaid'))
 
@@ -53,3 +53,9 @@ insurance_cost_difference = []
 insurance_cost_difference = list(zip(names, result))
 print("- Here is the estimated insurance cost difference: " + str(insurance_cost_difference))
 
+# Calculate difference in costs using list comprehension
+insurance_cost_diff = [
+    (insurance_data[n][0], insurance_data[n][1] - estimated_insurance_data[n][1])
+    for n in range(len(insurance_data))
+    ]
+print("- Here is the estimated insurance cost difference: {}".format(insurance_cost_diff))
